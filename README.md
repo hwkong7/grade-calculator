@@ -1,16 +1,17 @@
-# React + Vite
+# 학점 계산기 (React + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 실행
+npm install
+npm run dev
 
-Currently, two official plugins are available:
+## 엑셀 불러오기
+- 포털에서 성적표를 엑셀(.xlsx/.xls) 또는 CSV로 내려받아 업로드
+- 헤더에 `과목명/교과목명`, `학점`, `성적/등급`, `이수구분` 같은 단어가 있으면 자동 인식
+- `sample.csv`로 테스트 가능
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 파일 구조
+src/
+  App.jsx         메인 화면 (과목 입력 표 + 결과)
+  grades.js       성적표(A+=4.5...)와 평점 계산 함수
+  parseExcel.js   엑셀/CSV → 과목 배열 변환
+  Graduation.jsx  졸업요건 계산기
