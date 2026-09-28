@@ -3,16 +3,20 @@ import { GRADE_POINTS, PASS_GRADES, CATEGORIES } from './grades'
 
 // 엑셀 헤더 이름이 학교마다 달라서, 키워드로 열을 찾음
 const HEADER_KEYWORDS = {
-  name: ['교과목명', '과목명', '과목', '강의명'],
+  name: ['교과목명', '과목명', '강의명', '과목'],
   credit: ['학점'],
   grade: ['성적', '등급', '평가'],
   category: ['이수구분', '구분', '영역'],
 }
 
 function findColumn(headers, keywords) {
-  return headers.findIndex((h) =>
-    keywords.some((k) => String(h).replace(/\s/g, '').includes(k))
-  )
+  const cleaned = Array.from(headers, (h) => String(h ?? '').replace(/\s/g, ''))
+  // 키워드 우선순위대로 먼저 훑어서, '과목코드'가 '과목명'보다 먼저 매칭되는 걸 방지
+  for (const k of keywords) {
+    const idx = cleaned.findIndex((h) => h.includes(k) && !h.includes('코드'))
+    if (idx !== -1) return idx
+  }
+  return -1
 }
 
 // "A" → "A0" 처럼 성적 표기 통일

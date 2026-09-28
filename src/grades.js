@@ -36,4 +36,4 @@ export function calcGPA(courses) {
     gpaCredits,
     earnedCredits,
   }
-}x``
+}
